@@ -35,6 +35,9 @@ Supported Language: C/C++, Rust, Python3
       git clone https://github.com/rust-analyzer/rust-analyzer.git && cd rust-analyzer
       cargo xtask install --server
 
+      # if failed, update your rust to the latest release
+      rustup toolchain install stable
+
 * ccls
 
       git clone https://github.com/MaskRay/ccls.git && cd ccls
@@ -59,6 +62,12 @@ Supported Language: C/C++, Rust, Python3
     nvim
     :PaqInstall
     :CheckHealth // troubleshoot any loading issues
+
+## TODO
+
+* auto lint after save;
+* more language support (YAML, TOML, HTML ...)
+* show error on the fly
 
 ## References
 
