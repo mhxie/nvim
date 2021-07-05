@@ -14,6 +14,7 @@ end
 cmd 'packadd paq-nvim'               -- load the package manager
 local paq = require('paq-nvim').paq  -- a convenient alias
 paq {'savq/paq-nvim', opt = true}    -- paq-nvim manages itself
+paq {'navarasu/onedark.nvim'}
 paq {'shougo/deoplete-lsp'}
 paq {'shougo/deoplete.nvim', run = fn['remote#host#UpdateRemotePlugins']}
 paq {'nvim-treesitter/nvim-treesitter'}
@@ -21,10 +22,15 @@ paq {'neovim/nvim-lspconfig'}
 paq {'junegunn/fzf', run = fn['fzf#install']}
 paq {'junegunn/fzf.vim'}
 paq {'ojroques/nvim-lspfuzzy'}
+paq {'famiu/feline.nvim'}
+-- paq {'hoob3rt/lualine.nvim'}
+paq {'kyazdani42/nvim-web-devicons'}
+-- paq {'glepnir/galaxyline.nvim'} 
+paq {'simrat39/rust-tools.nvim'}
 g['deoplete#enable_at_startup'] = 1  -- enable deoplete at startup
 
 -------------------- OPTIONS -------------------------------
-cmd 'colorscheme desert'            -- Put your favorite colorscheme here
+-- cmd 'colorscheme desert'            -- Put your favorite colorscheme here
 opt.completeopt = {'menuone', 'noinsert', 'noselect'}  -- Completion options (for deoplete)
 opt.expandtab = true                -- Use spaces instead of tabs
 opt.hidden = true                   -- Enable background buffers
@@ -61,6 +67,11 @@ map('n', '<leader>o', 'm`o<Esc>``')  -- Insert a newline in normal mode
 -------------------- TREE-SITTER ---------------------------
 local ts = require 'nvim-treesitter.configs'
 ts.setup {ensure_installed = 'maintained', highlight = {enable = true}}
+
+-------------------- PRETTY-NEOVIM ---------------------------
+require('onedark').setup()
+require('feline').setup()
+-- require('lualine').setup()
 
 -------------------- LSP -----------------------------------
 local lsp = require 'lspconfig'
