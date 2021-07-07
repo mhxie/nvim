@@ -1,4 +1,3 @@
-# @format
 ## Personal Neovim Configuration
 
 My personal neovim configuration for daily coding.
@@ -66,9 +65,7 @@ Supported Language: C/C++, Rust, Python3
 
 ## TODO
 
-* auto lint after save;
 * more language support (YAML, TOML, HTML ...)
-* show error on the fly
 
 ## References
 
