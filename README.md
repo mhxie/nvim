@@ -1,3 +1,4 @@
+# @format
 ## Personal Neovim Configuration
 
 My personal neovim configuration for daily coding.
@@ -71,6 +72,7 @@ Supported Language: C/C++, Rust, Python3
 
 ## References
 
+* https://oroques.dev/notes/neovim-init/
 * https://github.com/neovim/neovim
 * https://oroques.dev/notes/neovim-init/
 * https://github.com/rockerBOO/awesome-neovim

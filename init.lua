@@ -34,6 +34,8 @@ paq {'nvim-lua/plenary.nvim'}
 paq {'mhinz/vim-signify'}
 paq {'tpope/vim-fugitive'}
 g['deoplete#enable_at_startup'] = 1  -- enable deoplete at startup
+-- paq {'python/black'}
+paq {'rust-lang/rust.vim'}
 
 -------------------- OPTIONS -------------------------------
 cmd 'colorscheme PaperColor'           -- Put your favorite colorscheme here
@@ -57,6 +59,7 @@ opt.tabstop = 2                     -- Number of spaces tabs count for
 opt.termguicolors = true            -- True color support
 opt.wildmode = {'list', 'longest'}  -- Command-line completion mode
 opt.wrap = false                    -- Disable line wrap
+g['rustfmt_autosave'] = 1            -- Enable Rust Auto Format
 
 -------------------- MAPPINGS ------------------------------
 map('', '<leader>c', '"+y')       -- Copy to clipboard in normal, visual, select and operator modes
@@ -101,3 +104,4 @@ map('n', '<space>s', '<cmd>lua vim.lsp.buf.document_symbol()<CR>')
 
 -------------------- COMMANDS ------------------------------
 cmd 'au TextYankPost * lua vim.highlight.on_yank {on_visual = false}'  -- disabled in visual mode
+-- cmd 'autocmd BufWritePre *.py execute \':Black\''
