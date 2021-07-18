@@ -37,6 +37,7 @@ g['deoplete#enable_at_startup'] = 1  -- enable deoplete at startup
 paq {'rust-lang/rust.vim'}
 g['rustfmt_autosave'] = 1            -- Enable Rust auto format
 paq {'python/black'}
+paq {'rhysd/vim-clang-format'}
 
 -------------------- OPTIONS -------------------------------
 cmd 'colorscheme PaperColor'           -- Put your favorite colorscheme here

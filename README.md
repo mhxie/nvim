@@ -30,7 +30,7 @@ Supported Language: C/C++, Rust, Python3
 
 ### Language Servers & Linters
 
-* rust-analyzer
+* rust-analyzer & rustfmt
 
       git clone https://github.com/rust-analyzer/rust-analyzer.git && cd rust-analyzer
       cargo xtask install --server
@@ -38,19 +38,22 @@ Supported Language: C/C++, Rust, Python3
       # if failed, update your rust to the latest release
       rustup toolchain install stable
 
-* ccls
+* ccls & clang-format
 
       git clone https://github.com/MaskRay/ccls.git && cd ccls
       sudo apt install clang cmake libclang-dev llvm-dev rapidjson-dev
       cmake -H. -BRelease
       cmake --build Release
       cd Release && sudo make install
-    
+
   or
 
       sudo apt install ccls // debian
+      sudo apt-cache search clang-format
+      nvim
+      :ClangFormatAutoEnable
 
-* python-language-server
+* python-language-server & black
 
       pip install 'python-language-server[all]'
 
@@ -66,6 +69,7 @@ Supported Language: C/C++, Rust, Python3
 ## TODO
 
 * more language support (YAML, TOML, HTML ...)
+* add code analysis tools (e.g. facebook infer)
 
 ## References
 
