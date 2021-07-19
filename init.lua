@@ -106,3 +106,4 @@ map('n', '<space>s', '<cmd>lua vim.lsp.buf.document_symbol()<CR>')
 -------------------- COMMANDS ------------------------------
 cmd 'au TextYankPost * lua vim.highlight.on_yank {on_visual = false}'  -- disabled in visual mode
 cmd 'autocmd BufWritePre *.py execute \':Black\''
+cmd 'autocmd FileType c,cpp ClangFormatAutoEnable'

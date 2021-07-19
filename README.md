@@ -49,9 +49,7 @@ Supported Language: C/C++, Rust, Python3
   or
 
       sudo apt install ccls // debian
-      sudo apt-cache search clang-format
-      nvim
-      :ClangFormatAutoEnable
+      sudo apt-get install clang-format
 
 * python-language-server & black
 
