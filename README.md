@@ -63,6 +63,7 @@ Supported Language: C/C++, Rust, Python3
     nvim
     :PaqInstall
     :CheckHealth // troubleshoot any loading issues
+    :PaqUpdate
 
 ## TODO
 
@@ -71,7 +72,6 @@ Supported Language: C/C++, Rust, Python3
 
 ## References
 
-* https://oroques.dev/notes/neovim-init/
 * https://github.com/neovim/neovim
 * https://oroques.dev/notes/neovim-init/
 * https://github.com/rockerBOO/awesome-neovim
