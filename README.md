@@ -63,7 +63,7 @@ Supported Language: C/C++, Rust, Python3
     cd ~/.config
     git clone https://github.com/mhxie/nvim.git
     nvim
-    :PaqInstall
+    :PaqSync
     :CheckHealth // troubleshoot any loading issues
 
 ## TODO
@@ -73,7 +73,6 @@ Supported Language: C/C++, Rust, Python3
 
 ## References
 
-* https://oroques.dev/notes/neovim-init/
 * https://github.com/neovim/neovim
 * https://oroques.dev/notes/neovim-init/
 * https://github.com/rockerBOO/awesome-neovim

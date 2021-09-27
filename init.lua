@@ -15,10 +15,7 @@ cmd 'packadd paq-nvim'               -- load the package manager
 local paq = require('paq-nvim').paq  -- a convenient alias
 paq {'savq/paq-nvim', opt = true}    -- paq-nvim manages itself
 --paq {'navarasu/onedark.nvim'}
---paq {'ParamagicDev/vim-medic_chalk'}
---paq {'christophermca/meta5'}
 paq {'NLKNguyen/papercolor-theme'}
---paq {'nanotech/jellybeans.vim'}
 paq {'shougo/deoplete-lsp'}
 paq {'shougo/deoplete.nvim', run = fn['remote#host#UpdateRemotePlugins']}
 paq {'nvim-treesitter/nvim-treesitter'}
@@ -31,7 +28,8 @@ paq {'kyazdani42/nvim-web-devicons'}
 paq {'ojroques/nvim-hardline'}
 paq {'simrat40/rust-tools.nvim'}
 paq {'nvim-lua/plenary.nvim'}
-paq {'mhinz/vim-signify'}
+-- paq {'mhinz/vim-signify'}
+paq {'lewis6991/gitsigns.nvim'}      -- git decorations implemented purely in lua/teal
 paq {'tpope/vim-fugitive'}
 g['deoplete#enable_at_startup'] = 1  -- enable deoplete at startup
 paq {'rust-lang/rust.vim'}
@@ -41,7 +39,7 @@ paq {'rhysd/vim-clang-format'}
 
 -------------------- OPTIONS -------------------------------
 cmd 'colorscheme PaperColor'           -- Put your favorite colorscheme here
-opt.completeopt = {'menuone', 'noinsert', 'noselect'}  -- Completion options (for deoplete)
+opt.completeopt = {'menuone', 'noinsert', 'noselect'}  -- Completion options
 opt.expandtab = true                -- Use spaces instead of tabs
 opt.hidden = true                   -- Enable background buffers
 opt.ignorecase = true               -- Ignore case
@@ -76,20 +74,26 @@ map('n', '<leader>o', 'm`o<Esc>``')  -- Insert a newline in normal mode
 
 -------------------- TREE-SITTER ---------------------------
 local ts = require 'nvim-treesitter.configs'
-ts.setup {ensure_installed = 'maintained', highlight = {enable = true}}
+ts.setup {
+  ensure_installed = 'maintained',
+  highlight = {
+    enable = true,
+    disable = {'cpp', 'cuda', 'cmake'} -- disable until neovim v0.6 is released
+  },
+}
 
 -------------------- PRETTY-NEOVIM ---------------------------
 -- require('onedark').setup()
 require('hardline').setup {}
+require('gitsigns').setup {}
 
 -------------------- LSP -----------------------------------
 local lsp = require 'lspconfig'
 local lspfuzzy = require 'lspfuzzy'
 
--- For ccls we use the default settings
-lsp.ccls.setup {}
+lsp.ccls.setup {} -- For ccls we use the default settings
 -- root_dir is where the LSP server will start: here at the project root otherwise in current folder
-lsp.pyls.setup {root_dir = lsp.util.root_pattern('.git', fn.getcwd())}
+lsp.pylsp.setup {root_dir = lsp.util.root_pattern('.git', fn.getcwd())}
 lsp.rust_analyzer.setup({ on_attach=on_attach })
 lspfuzzy.setup {}  -- Make the LSP client use FZF instead of the quickfix list
 
@@ -106,3 +110,4 @@ map('n', '<space>s', '<cmd>lua vim.lsp.buf.document_symbol()<CR>')
 -------------------- COMMANDS ------------------------------
 cmd 'au TextYankPost * lua vim.highlight.on_yank {on_visual = false}'  -- disabled in visual mode
 cmd 'autocmd BufWritePre *.py execute \':Black\''
+cmd 'autocmd FileType c,cpp ClangFormatAutoEnable'
