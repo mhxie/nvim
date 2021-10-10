@@ -55,7 +55,7 @@ Supported Language: C/C++, Rust, Python3
 
 * python-language-server & black
 
-      pip install 'python-language-server[all]'
+      pip install 'python-lsp-server[all]'
 
 
 ## Installation
