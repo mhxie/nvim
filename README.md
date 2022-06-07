@@ -8,7 +8,7 @@ Supported Language: C/C++, Rust, Python3
 
 ### Basic
 
-* neovim 0.5+
+* neovim 0.8+
 
       git clone https://github.com/neovim/neovim.git && cd neovim
       make CMAKE_BUILD_TYPE=Release
@@ -35,7 +35,7 @@ Supported Language: C/C++, Rust, Python3
       git clone https://github.com/rust-analyzer/rust-analyzer.git && cd rust-analyzer
       cargo xtask install --server
 
-      # if failed, update your rust to the latest release
+      # if failed or not work, update your rust to the latest release
       rustup toolchain install stable
 
 * ccls & clang-format
@@ -64,6 +64,7 @@ Supported Language: C/C++, Rust, Python3
     :PaqInstall
     :CheckHealth // troubleshoot any loading issues
     :PaqUpdate
+    :TSUninstall all // uninstall all parsers when updated
 
 ## TODO
 

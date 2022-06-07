@@ -81,10 +81,10 @@ map('n', '<leader>o', 'm`o<Esc>``')  -- Insert a newline in normal mode
 -------------------- TREE-SITTER ---------------------------
 local ts = require 'nvim-treesitter.configs'
 ts.setup {
-  ensure_installed = 'maintained',
+  ensure_installed = {'c', 'cpp', 'python', 'rust', 'lua'},
   highlight = {
     enable = true,
-    disable = {'cpp'} -- disable cpp parser before getting an upstream fix
+    -- disable = {'cpp'} -- disable cpp parser before getting an upstream fix
   },
 }
 
