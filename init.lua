@@ -11,38 +11,32 @@ local function map(mode, lhs, rhs, opts)
 end
 
 -------------------- PLUGINS -------------------------------
-cmd 'packadd paq-nvim'               -- load the package manager
-local paq = require('paq-nvim').paq  -- a convenient alias
-paq {'savq/paq-nvim', opt = true}    -- paq-nvim manages itself
-paq {'navarasu/onedark.nvim'}
+require 'paq' {
+    'savq/paq-nvim';                 -- paq-nvim manages itself
+
+    'navarasu/onedark.nvim';
+    'yorik1984/newpaper.nvim';
+    'shougo/deoplete-lsp';
+    {'shougo/deoplete.nvim', run = fn['remote#host#UpdateRemotePlugins']};
+    {'nvim-treesitter/nvim-treesitter', run = fn['TSUpdate']};
+    'neovim/nvim-lspconfig';
+    'nvim-lua/lsp_extensions.nvim';
+    {'junegunn/fzf', run = fn['fzf#install']};
+    'ojroques/nvim-lspfuzzy';
+    'kyazdani42/nvim-web-devicons';
+    'ojroques/nvim-hardline';
+    'nvim-lua/plenary.nvim';
+    'lewis6991/gitsigns.nvim';      -- git decorations implemented purely in lua/teal
+    'tpope/vim-fugitive';
+    'rust-lang/rust.vim';
+    -- {'simrat39/rust-tools.nvim'}
+    'python/black';
+    'rhysd/vim-clang-format';
+}
 g['onedark_style'] = 'warmer'
-paq {'yorik1984/newpaper.nvim'}
 g['newpaper_style'] = 'dark'
--- paq {'folke/tokyonight.nvim'}
--- g['tokyonight_style'] = 'storm'
---paq {'ParamagicDev/vim-medic_chalk'}
---paq {'christophermca/meta5'}
---paq {'NLKNguyen/papercolor-theme'}
---paq {'nanotech/jellybeans.vim'}
-paq {'shougo/deoplete-lsp'}
-paq {'shougo/deoplete.nvim', run = fn['remote#host#UpdateRemotePlugins']}
-paq {'nvim-treesitter/nvim-treesitter', run = fn['TSUpdate']}
-paq {'neovim/nvim-lspconfig'}
-paq {'nvim-lua/lsp_extensions.nvim'}
-paq {'junegunn/fzf', run = fn['fzf#install']}
-paq {'junegunn/fzf.vim'}
-paq {'ojroques/nvim-lspfuzzy'}
-paq {'kyazdani42/nvim-web-devicons'}
-paq {'ojroques/nvim-hardline'}
-paq {'nvim-lua/plenary.nvim'}
-paq {'lewis6991/gitsigns.nvim'}      -- git decorations implemented purely in lua/teal
-paq {'tpope/vim-fugitive'}
 g['deoplete#enable_at_startup'] = 1  -- enable deoplete at startup
-paq {'rust-lang/rust.vim'}
 g['rustfmt_autosave'] = 1            -- Enable Rust auto format
--- paq {'simrat39/rust-tools.nvim'}
-paq {'python/black'}
-paq {'rhysd/vim-clang-format'}
 
 -------------------- OPTIONS -------------------------------
 opt.completeopt = {'menuone', 'noinsert', 'noselect'}  -- Completion options (for deoplete)

@@ -1,7 +1,5 @@
 ## Personal Neovim Configuration
 
-My personal neovim configuration for daily coding.
-
 Supported Language: C/C++, Rust, Python3
 
 ## Prerequisites
@@ -38,6 +36,9 @@ Supported Language: C/C++, Rust, Python3
       # if failed or not work, update your rust to the latest release
       rustup toolchain install stable
 
+      # install with pkg manager on termux
+      pkg install rust-analyzer
+
 * ccls & clang-format
 
       git clone https://github.com/MaskRay/ccls.git && cd ccls
@@ -51,9 +52,12 @@ Supported Language: C/C++, Rust, Python3
       sudo apt install ccls // debian
       sudo apt-get install clang-format
 
+      # install with pkg manager on termux
+      pkg install ccls
+
 * python-language-server & black
 
-      pip install 'python-language-server[all]'
+      pip install "python-lsp-server[all]"
 
 
 ## Installation
