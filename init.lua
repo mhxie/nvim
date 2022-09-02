@@ -21,8 +21,8 @@ require 'paq' {
     {'nvim-treesitter/nvim-treesitter', run = fn['TSUpdate']};
     'neovim/nvim-lspconfig';
     'nvim-lua/lsp_extensions.nvim';
-    {'junegunn/fzf', run = fn['fzf#install']};
-    'ojroques/nvim-lspfuzzy';
+    'nvim-lua/plenary.nvim';
+    'nvim-telescope/telescope.nvim';
     'kyazdani42/nvim-web-devicons';
     'ojroques/nvim-hardline';
     'nvim-lua/plenary.nvim';
@@ -88,18 +88,16 @@ require('newpaper').setup {}
 -- vim.cmd[[colorscheme tokyonight]]
 require('hardline').setup {}
 require('gitsigns').setup {}
--- require('rust-tools').setup{}
+require('telescope').setup{}
 -- cmd 'colorscheme PaperColor'           -- Put your favorite colorscheme here
 
 -------------------- LSP -----------------------------------
 local lsp = require 'lspconfig'
-local lspfuzzy = require 'lspfuzzy'
 
 -- For ccls we use the default settings
 lsp.ccls.setup {}
 lsp.pylsp.setup {}
 lsp.rust_analyzer.setup({ on_attach=on_attach })
-lspfuzzy.setup {}  -- Make the LSP client use FZF instead of the quickfix list
 
 map('n', '<space>,', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>')
 map('n', '<space>;', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>')
@@ -110,6 +108,12 @@ map('n', '<space>h', '<cmd>lua vim.lsp.buf.hover()<CR>')
 map('n', '<space>m', '<cmd>lua vim.lsp.buf.rename()<CR>')
 map('n', '<space>r', '<cmd>lua vim.lsp.buf.references()<CR>')
 map('n', '<space>s', '<cmd>lua vim.lsp.buf.document_symbol()<CR>')
+
+-------------------- Telescope ---------------------------
+map('n', '<leader>ff', '<cmd>Telescope find_files<CR>')
+map('n', '<leader>fg', '<cmd>Telescope live_grep<CR>')
+map('n', '<leader>fb', '<cmd>Telescope buffers<CR>')
+map('n', '<leader>fh', '<cmd>Telescope help_tags<CR>')
 
 -------------------- COMMANDS ------------------------------
 cmd 'au TextYankPost * lua vim.highlight.on_yank {on_visual = false}'  -- disabled in visual mode
