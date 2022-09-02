@@ -6,25 +6,50 @@ Supported Language: C/C++, Rust, Python3
 
 ### Basic
 
-* neovim 0.8+
+* neovim 0.7.2
 
       git clone https://github.com/neovim/neovim.git && cd neovim
-      make CMAKE_BUILD_TYPE=Release
+      git checkout stable && make CMAKE_BUILD_TYPE=RelWithDebInfo
       sudo make install
 
   or
 
-      sudo apt-get install neovim // Debian
+      sudo apt-get install neovim // Termux
 
 * paq-nvim
 
       git clone --depth=1 https://github.com/savq/paq-nvim.git \
       "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/pack/paqs/start/paq-nvim
+      
+      // in fish
+      git clone --depth=1 https://github.com/savq/paq-nvim.git \
+      "$HOME/.local/share"/nvim/site/pack/paqs/start/paq-nvim
 
 * deoplete.nvim
 
       pip3 install --user pynvim
       :UpdateRemotePlugin
+      
+* telescope.nvim
+
+      # sudo apt-get install ripgrep
+      curl -LO https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb
+      sudo dpkg -i ripgrep_13.0.0_amd64.deb
+      
+      sudo apt-get install fd-find
+
+## Installation
+
+    cd ~/.config
+    git clone https://github.com/mhxie/nvim.git
+    nvim
+    :PaqInstall
+    -------Helpful Commands-------
+    :CheckHealth // troubleshoot any loading issues
+    :PaqUpdate
+    :PaqSync  // do PaqInstall PaqUpdate PaqClean at once
+    :TSUninstall all // uninstall all parsers when updated
+    ----------------------------
 
 ### Language Servers & Linters
 
@@ -59,16 +84,6 @@ Supported Language: C/C++, Rust, Python3
 
       pip install "python-lsp-server[all]"
 
-
-## Installation
-
-    cd ~/.config
-    git clone https://github.com/mhxie/nvim.git
-    nvim
-    :PaqInstall
-    :CheckHealth // troubleshoot any loading issues
-    :PaqUpdate
-    :TSUninstall all // uninstall all parsers when updated
 
 ## TODO
 
