@@ -6,10 +6,10 @@ Supported Language: C/C++, Rust, Python3
 
 ### Basic
 
-* neovim 0.7.2
+* neovim 0.9.0
 
       git clone https://github.com/neovim/neovim.git && cd neovim
-      git checkout stable && make CMAKE_BUILD_TYPE=RelWithDebInfo
+      git checkout v0.9.0 && make CMAKE_BUILD_TYPE=RelWithDebInfo
       sudo make install
 
   or
@@ -20,7 +20,7 @@ Supported Language: C/C++, Rust, Python3
 
       git clone --depth=1 https://github.com/savq/paq-nvim.git \
       "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/pack/paqs/start/paq-nvim
-      
+
       // in fish
       git clone --depth=1 https://github.com/savq/paq-nvim.git \
       "$HOME/.local/share"/nvim/site/pack/paqs/start/paq-nvim
@@ -29,13 +29,13 @@ Supported Language: C/C++, Rust, Python3
 
       pip3 install --user pynvim
       :UpdateRemotePlugin
-      
+
 * telescope.nvim
 
       # sudo apt-get install ripgrep
       curl -LO https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb
       sudo dpkg -i ripgrep_13.0.0_amd64.deb
-      
+
       sudo apt-get install fd-find
 
 ## Installation

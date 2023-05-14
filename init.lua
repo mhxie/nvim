@@ -14,8 +14,9 @@ end
 require 'paq' {
     'savq/paq-nvim';                 -- paq-nvim manages itself
 
-    'navarasu/onedark.nvim';
-    'yorik1984/newpaper.nvim';
+    -- 'navarasu/onedark.nvim';
+    -- 'yorik1984/newpaper.nvim';
+    'rmehri01/onenord.nvim';
     'shougo/deoplete-lsp';
     {'shougo/deoplete.nvim', run = fn['remote#host#UpdateRemotePlugins']};
     {'nvim-treesitter/nvim-treesitter', run = fn['TSUpdate']};
@@ -33,13 +34,14 @@ require 'paq' {
     'python/black';
     'rhysd/vim-clang-format';
 }
-g['onedark_style'] = 'warmer'
-g['newpaper_style'] = 'dark'
+-- g['onedark_style'] = 'warmer'
+-- g['newpaper_style'] = 'white'
 g['deoplete#enable_at_startup'] = 1  -- enable deoplete at startup
 g['rustfmt_autosave'] = 1            -- Enable Rust auto format
 
 -------------------- OPTIONS -------------------------------
 opt.completeopt = {'menuone', 'noinsert', 'noselect'}  -- Completion options (for deoplete)
+opt.clipboard = "unnamedplus"
 opt.expandtab = true                -- Use spaces instead of tabs
 opt.hidden = true                   -- Enable background buffers
 opt.ignorecase = true               -- Ignore case
@@ -83,8 +85,9 @@ ts.setup {
 }
 
 -------------------- PRETTY-NEOVIM ---------------------------
-require('newpaper').setup {}
+-- require('newpaper').setup {}
 -- require('onedark').setup {}
+require('onenord').setup {}
 -- vim.cmd[[colorscheme tokyonight]]
 require('hardline').setup {}
 require('gitsigns').setup {}
