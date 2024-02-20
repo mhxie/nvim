@@ -18,8 +18,8 @@ require 'paq' {
     -- 'yorik1984/newpaper.nvim';
     'rmehri01/onenord.nvim';
     'shougo/deoplete-lsp';
-    {'shougo/deoplete.nvim', run = fn['remote#host#UpdateRemotePlugins']};
-    {'nvim-treesitter/nvim-treesitter', run = fn['TSUpdate']};
+    {'shougo/deoplete.nvim', build = fn['remote#host#UpdateRemotePlugins']};
+    {'nvim-treesitter/nvim-treesitter', build = fn['TSUpdate']};
     'neovim/nvim-lspconfig';
     'nvim-lua/lsp_extensions.nvim';
     'nvim-lua/plenary.nvim';
