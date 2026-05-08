@@ -1,6 +1,7 @@
 -- Ensure lazy.nvim is installed
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+local uv = vim.uv or vim.loop
+if not uv.fs_stat(lazypath) then
   vim.fn.system({
     "git",
     "clone",
@@ -16,9 +17,9 @@ require("lazy").setup({
   -- Core plugins
   { "folke/lazy.nvim", version = "*" }, -- lazy.nvim manages itself
 
-  -- Mason for LSP management
-  { "williamboman/mason.nvim" },
-  { "williamboman/mason-lspconfig.nvim" },
+  -- Mason for LSP management (org moved from williamboman -> mason-org)
+  { "mason-org/mason.nvim" },
+  { "mason-org/mason-lspconfig.nvim" },
 
   -- Colorschemes
   { "rmehri01/onenord.nvim",
@@ -126,8 +127,12 @@ require("lazy").setup({
     end
   },
 
-  -- Treesitter
+  -- Treesitter — pin to `master` (stable legacy API). The repo's default
+  -- branch is now `main`, which is a partial rewrite without the legacy
+  -- `nvim-treesitter.configs` module that this config depends on.
   { "nvim-treesitter/nvim-treesitter",
+    branch = "master",
+    build = ":TSUpdate",
     config = function()
       require('nvim-treesitter.configs').setup {
         ensure_installed = {'c', 'cpp', 'python', 'rust', 'lua', 'go'},
@@ -154,8 +159,8 @@ require("lazy").setup({
     end
   },
 
-  -- UI Enhancements
-  { "kyazdani42/nvim-web-devicons" }, -- For icons
+  -- UI Enhancements (org renamed from kyazdani42 -> nvim-tree)
+  { "nvim-tree/nvim-web-devicons" }, -- For icons
   { "ojroques/nvim-hardline",
     config = function()
       require('hardline').setup {}
@@ -177,11 +182,13 @@ require("lazy").setup({
 
   -- Language Specific
   { "rust-lang/rust.vim", lazy = true },
+  -- rust-tools.nvim was archived in 2023; rustaceanvim is the maintained successor.
+  -- It auto-configures rust-analyzer via lspconfig — no explicit setup() needed.
   {
-    "simrat39/rust-tools.nvim",
-    ft = { "rust", "rs" },
-    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" }
-    -- config block for rust-tools is in lsp.lua
+    "mrcjkb/rustaceanvim",
+    version = "^6",
+    lazy = false, -- plugin loads itself on Rust filetypes
+    ft = { "rust" },
   },
 
 }) 
