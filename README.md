@@ -6,8 +6,9 @@ Welcome to my personal Neovim setup! This configuration is designed for a produc
 
 Before you begin, make sure you have the following installed:
 
-1.  **Neovim (v0.10.0 or later recommended)**:
-    *   Check the [Neovim releases](https://github.com/neovim/neovim/releases) page for installation instructions for your OS. Using a recent version is crucial for compatibility with modern plugins.
+1.  **Neovim (v0.11.0 or later required)**:
+    *   This config uses the new `vim.lsp.config()` / `vim.lsp.enable()` core LSP API, which requires Neovim 0.11+. Tested on 0.12.x.
+    *   Check the [Neovim releases](https://github.com/neovim/neovim/releases) page for installation instructions for your OS.
 
 2.  **Git**: Essential for managing plugins and this configuration.
 
@@ -92,9 +93,9 @@ This setup is modular, with configurations in `lua/options.lua`, `lua/keymaps.lu
 *   **Plugin Manager**: `folke/lazy.nvim`
 *   **Completion**: `hrsh7th/nvim-cmp` (with sources for LSP, buffer, path)
 *   **Formatting**: `stevearc/conform.nvim` (handles `stylua`, `ruff format`, `isort`, `clang-format`, `rustfmt`)
-*   **LSP Management**: `williamboman/mason.nvim` and `williamboman/mason-lspconfig.nvim`
-*   **Key LSPs Configured**:
-    *   **Rust**: `rust-analyzer` (via `rust-tools.nvim`)
+*   **LSP Management**: `mason-org/mason.nvim` and `mason-org/mason-lspconfig.nvim` (the project moved from the `williamboman` org).
+*   **Key LSPs Configured** (via `vim.lsp.config()` + auto-enable from mason-lspconfig):
+    *   **Rust**: `rust-analyzer` (via `mrcjkb/rustaceanvim` — the maintained successor to the archived `rust-tools.nvim`; it owns the Rust client lifecycle, so `rust_analyzer` is excluded from mason-lspconfig auto-enable)
     *   **C/C++**: `clangd`
     *   **Python**: `ruff` (provides LSP features, linting, and formatting)
     *   **Go**: `gopls`
@@ -115,7 +116,8 @@ This setup is modular, with configurations in `lua/options.lua`, `lua/keymaps.lu
 *   [lazy.nvim](https://github.com/folke/lazy.nvim)
 *   [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
 *   [conform.nvim](https://github.com/stevearc/conform.nvim)
-*   [mason.nvim](https://github.com/williamboman/mason.nvim)
+*   [mason.nvim](https://github.com/mason-org/mason.nvim)
+*   [rustaceanvim](https://github.com/mrcjkb/rustaceanvim)
 *   [Awesome Neovim](https://github.com/rockerBOO/awesome-neovim)
 
 ---
