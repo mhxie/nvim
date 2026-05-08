@@ -9,7 +9,7 @@
 --      servers via vim.lsp.enable(), which actually starts them on
 --      matching filetypes.
 
-local ok_cmp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+local ok_blink, blink_cmp = pcall(require, "blink.cmp")
 
 -- Buffer-attach hook: keymaps + omnifunc.
 local on_attach = function(client, bufnr)
@@ -28,10 +28,11 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', 'gr',          vim.lsp.buf.references,     vim.tbl_extend('force', map_opts, { desc = "Go to references" }))
 end
 
--- Capabilities: cmp's default if available, else stock LSP capabilities.
+-- Capabilities: blink.cmp extends LSP capabilities (snippet support, etc.)
+-- when available; otherwise fall back to stock.
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-if ok_cmp then
-  capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
+if ok_blink then
+  capabilities = blink_cmp.get_lsp_capabilities(capabilities)
 end
 
 -- Default config applied to all servers.

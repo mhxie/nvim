@@ -31,64 +31,21 @@ require("lazy").setup({
     end
   },
 
-  -- Completion: nvim-cmp
+  -- Completion: blink.cmp (replaces archived nvim-cmp + cmp-* sources).
+  -- Versioned tag downloads a prebuilt Rust fuzzy matcher; no local rustc
+  -- needed. Snippets come from `friendly-snippets`.
   {
-    'hrsh7th/nvim-cmp',
-    dependencies = {
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-path',
-      -- Optional: Add snippet engine like LuaSnip and its cmp source
-      -- 'L3MON4D3/LuaSnip',
-      -- 'saadparwaiz1/cmp_luasnip', 
+    'saghen/blink.cmp',
+    version = '1.*',
+    dependencies = { 'rafamadriz/friendly-snippets' },
+    opts = {
+      keymap = { preset = 'default' },        -- <C-Space> open, <CR> accept, <C-p>/<C-n> + <Tab>/<S-Tab> nav, <C-b>/<C-f> scroll docs
+      appearance = { nerd_font_variant = 'mono' },
+      completion = { documentation = { auto_show = false, auto_show_delay_ms = 500 } },
+      sources = { default = { 'lsp', 'path', 'snippets', 'buffer' } },
+      fuzzy = { implementation = "prefer_rust_with_warning" },
     },
-    config = function()
-      local cmp = require'cmp'
-      local luasnip = nil -- Placeholder, will be set if LuaSnip is added
-      -- local luasnip_status_ok, luasnip_module = pcall(require, "luasnip")
-      -- if luasnip_status_ok then luasnip = luasnip_module end
-
-      cmp.setup({
-        snippet = {
-          expand = function(args)
-            if luasnip then
-              luasnip.lsp_expand(args.body)
-            end
-          end,
-        },
-        mapping = cmp.mapping.preset.insert({
-          ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-          ['<C-f>'] = cmp.mapping.scroll_docs(4),
-          ['<C-Space>'] = cmp.mapping.complete(),
-          ['<C-e>'] = cmp.mapping.abort(),
-          ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set to false to only confirm explicitly selected items.
-          ['<Tab>'] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_next_item()
-            elseif luasnip and luasnip.expand_or_jumpable() then
-              luasnip.expand_or_jump()
-            else
-              fallback()
-            end
-          end, { "i", "s" }), -- i for insert mode, s for select mode (if any)
-          ['<S-Tab>'] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_prev_item()
-            elseif luasnip and luasnip.jumpable(-1) then
-              luasnip.jump(-1)
-            else
-              fallback()
-            end
-          end, { "i", "s" }),
-        }),
-        sources = cmp.config.sources({
-          { name = 'nvim_lsp' },
-          { name = 'buffer' },
-          { name = 'path' },
-          -- { name = 'luasnip' }, -- if using LuaSnip
-        })
-      })
-    end
+    opts_extend = { "sources.default" },
   },
 
   -- Formatting: conform.nvim
@@ -180,10 +137,9 @@ require("lazy").setup({
     "github/copilot.vim",
   },
 
-  -- Language Specific
-  { "rust-lang/rust.vim", lazy = true },
-  -- rust-tools.nvim was archived in 2023; rustaceanvim is the maintained successor.
-  -- It auto-configures rust-analyzer via lspconfig — no explicit setup() needed.
+  -- Rust: rustaceanvim handles filetype detection, LSP wiring, and Rust
+  -- niceties (cargo-style mappings, expand macros, etc.) — replaces both
+  -- the archived rust-tools.nvim and the older rust.vim ftplugin.
   {
     "mrcjkb/rustaceanvim",
     version = "^6",
