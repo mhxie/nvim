@@ -90,6 +90,7 @@ require("lazy").setup({
   { "nvim-treesitter/nvim-treesitter",
     branch = "master",
     build = ":TSUpdate",
+    event = { "BufReadPost", "BufNewFile" }, -- defer until a buffer exists
     config = function()
       require('nvim-treesitter.configs').setup {
         ensure_installed = {'c', 'cpp', 'python', 'rust', 'lua', 'go'},
@@ -126,15 +127,20 @@ require("lazy").setup({
 
   -- Git
   { "lewis6991/gitsigns.nvim",
+    event = { "BufReadPre", "BufNewFile" }, -- gutter signs need a real buffer
     config = function()
       require('gitsigns').setup {}
     end
   },
-  { "tpope/vim-fugitive" },
+  -- Fugitive is purely command-driven — load only when invoked.
+  { "tpope/vim-fugitive",
+    cmd = { "G", "Git", "Gdiff", "Gdiffsplit", "Gvdiffsplit",
+            "Gread", "Gwrite", "Gedit", "Gblame", "Gstatus", "Glog" },
+  },
 
-  -- GitHub Copilot
-  { 
-    "github/copilot.vim",
+  -- GitHub Copilot — only matters once you start typing.
+  { "github/copilot.vim",
+    event = "InsertEnter",
   },
 
   -- Rust: rustaceanvim handles filetype detection, LSP wiring, and Rust
