@@ -22,12 +22,11 @@ require("lazy").setup({
   { "mason-org/mason-lspconfig.nvim" },
 
   -- Colorschemes
-  { "rmehri01/onenord.nvim",
+  { "yorik1984/newpaper.nvim",
     lazy = false, -- Load theme on startup
     priority = 1000, -- Ensure it's loaded first
     config = function()
-      require('onenord').setup {}
-      vim.cmd[[colorscheme onenord]]
+      require('newpaper').setup { style = 'dark' }
     end
   },
 
@@ -153,4 +152,4 @@ require("lazy").setup({
     ft = { "rust" },
   },
 
-}) 
+})
