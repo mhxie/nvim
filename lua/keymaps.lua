@@ -7,10 +7,6 @@ vim.keymap.set({'n', 'v', 'o'}, '<leader>c', '"+y', { desc = "Copy to clipboard"
 vim.keymap.set('i', '<C-u>', '<C-g>u<C-u>', { desc = "Undo-friendly C-u" })
 vim.keymap.set('i', '<C-w>', '<C-g>u<C-w>', { desc = "Undo-friendly C-w" })
 
--- <Tab> and <S-Tab> to navigate completion menu
-vim.keymap.set('i', '<S-Tab>', function() return vim.fn.pumvisible() == 1 and "\\<C-p>" or "\\<S-Tab>" end, { expr = true, silent = true, desc = "Navigate completion up" })
-vim.keymap.set('i', '<Tab>', function() return vim.fn.pumvisible() == 1 and "\\<C-n>" or "\\<Tab>" end, { expr = true, silent = true, desc = "Navigate completion down" })
-
 -- Clear highlights
 vim.keymap.set('n', '<C-l>', '<cmd>noh<CR>', { silent = true, desc = "Clear highlights" })
 

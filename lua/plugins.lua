@@ -38,9 +38,23 @@ require("lazy").setup({
     version = '1.*',
     dependencies = { 'rafamadriz/friendly-snippets' },
     opts = {
-      keymap = { preset = 'default' },        -- <C-Space> open, <CR> accept, <C-p>/<C-n> + <Tab>/<S-Tab> nav, <C-b>/<C-f> scroll docs
+      -- Tab inserts the first candidate; each further Tab inserts the next one
+      -- (wrapping at the end), S-Tab goes back. Outside a menu, Tab jumps
+      -- snippet placeholders, else indents. <CR> is a plain newline. From the
+      -- default preset: <C-Space> open, <C-y> accept (applies auto-imports /
+      -- snippet expansion), <C-e> cancel + undo insert, <C-b>/<C-f> scroll docs.
+      keymap = {
+        preset = 'default',
+        ['<Tab>']   = { 'select_next', 'snippet_forward',  'fallback' },
+        ['<S-Tab>'] = { 'select_prev', 'snippet_backward', 'fallback' },
+      },
       appearance = { nerd_font_variant = 'mono' },
-      completion = { documentation = { auto_show = false, auto_show_delay_ms = 500 } },
+      completion = {
+        documentation = { auto_show = false, auto_show_delay_ms = 500 },
+        -- No preselect so the first Tab lands on item 1; auto_insert makes
+        -- selection insert the candidate text, like the native <C-n> popup.
+        list = { selection = { preselect = false, auto_insert = true } },
+      },
       sources = { default = { 'lsp', 'path', 'snippets', 'buffer' } },
       fuzzy = { implementation = "prefer_rust_with_warning" },
     },
@@ -135,11 +149,6 @@ require("lazy").setup({
   { "tpope/vim-fugitive",
     cmd = { "G", "Git", "Gdiff", "Gdiffsplit", "Gvdiffsplit",
             "Gread", "Gwrite", "Gedit", "Gblame", "Gstatus", "Glog" },
-  },
-
-  -- GitHub Copilot — only matters once you start typing.
-  { "github/copilot.vim",
-    event = "InsertEnter",
   },
 
   -- Rust: rustaceanvim handles filetype detection, LSP wiring, and Rust

@@ -18,7 +18,7 @@ Before you begin, make sure you have the following installed:
     *   **Python**: Install [Python 3](https://www.python.org/downloads/) (`python3`, `pip3`).
     *   **macOS Users**: Install [Homebrew](https://brew.sh/) if you intend to use C/C++ tools or other packages conveniently.
 
-4.  **Node.js (LTS recommended)**: Required for `github/copilot.vim`. Install from [nodejs.org](https://nodejs.org/) or via a version manager like `nvm`. The `setup.sh` script can also attempt to install this.
+4.  **Node.js (optional)**: Not needed by this config itself. Install from [nodejs.org](https://nodejs.org/) or via a version manager like `nvm`. The `setup.sh` script can also attempt to install this.
 
 5.  **Build Tools (for some plugins/LSPs)**:
     *   A C compiler (like `gcc` or `clang`) is often needed for building Treesitter parsers or other native extensions for plugins.
@@ -72,7 +72,6 @@ Before you begin, make sure you have the following installed:
     nvim
     ```
     `lazy.nvim` (our plugin manager) will automatically bootstrap itself and install all configured plugins on the first run. You might need to restart Neovim after the initial plugin installation.
-    *   After installing plugins, run `:Copilot setup` in Neovim to authorize the GitHub Copilot plugin if you use it.
     *   Run `:checkhealth` to see if there are any issues, especially with `nvim-treesitter` or LSP configurations.
 
 ## Helpful Neovim Commands
@@ -81,7 +80,6 @@ Before you begin, make sure you have the following installed:
 *   `:Mason`: Opens the Mason UI to manage LSP servers, DAPs, linters, and formatters.
 *   `:ConformInfo`: Shows information about available formatters for the current buffer.
 *   `:Format`: Manually formats the current buffer using `conform.nvim`.
-*   `:Copilot setup`: To authorize and configure GitHub Copilot.
 *   `:checkhealth`: Troubleshoots loading issues (useful for `nvim-treesitter`, LSPs, general setup).
 *   `:TSUpdate`: Manually update all Treesitter parsers (if needed).
 
@@ -101,7 +99,6 @@ This setup is modular, with configurations in `lua/options.lua`, `lua/keymaps.lu
 *   **Fuzzy Finding**: `nvim-telescope/telescope.nvim`
 *   **Treesitter**: `nvim-treesitter/nvim-treesitter` (for syntax highlighting and more)
 *   **Git Integration**: `lewis6991/gitsigns.nvim`, `tpope/vim-fugitive`
-*   **GitHub Copilot**: `github/copilot.vim`
 
 ## TODO
 
