@@ -88,6 +88,7 @@ Before you begin, make sure you have the following installed:
 This setup is modular, with configurations in `lua/options.lua`, `lua/keymaps.lua`, `lua/plugins.lua`, and `lua/lsp.lua`.
 
 *   **Plugin Manager**: `folke/lazy.nvim`
+*   **Colorscheme**: `catppuccin/nvim` — follows the terminal background: latte on a light terminal, mocha on a dark one (Neovim detects the terminal colour at startup; with `flavour = "auto"` catppuccin follows `background`).
 *   **Completion**: `saghen/blink.cmp` (with sources for LSP, path, snippets, buffer)
 *   **Formatting**: `stevearc/conform.nvim` (handles `stylua`, `ruff format`, `clang-format`, `rustfmt`)
 *   **LSP Management**: `mason-org/mason.nvim` and `mason-org/mason-lspconfig.nvim` (the project moved from the `williamboman` org).

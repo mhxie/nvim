@@ -21,13 +21,21 @@ require("lazy").setup({
   { "mason-org/mason.nvim" },
   { "mason-org/mason-lspconfig.nvim" },
 
-  -- Colorschemes
-  { "yorik1984/newpaper.nvim",
-    lazy = false, -- Load theme on startup
-    priority = 1000, -- Ensure it's loaded first
+  -- Colorscheme: catppuccin. flavour = "auto" follows 'background' (light ->
+  -- latte, dark -> mocha), and Neovim sets 'background' from the terminal's
+  -- reported background colour (OSC 11), so the editor follows the terminal.
+  -- Plugin integrations (blink, gitsigns, telescope, mason, treesitter, ...)
+  -- are auto-detected.
+  { "catppuccin/nvim", name = "catppuccin",
+    lazy = false,    -- load the theme on startup
+    priority = 1000, -- before other plugins, so they pick up its highlights
     config = function()
-      require('newpaper').setup { style = 'dark' }
-    end
+      require("catppuccin").setup({
+        flavour = "auto",
+        background = { light = "latte", dark = "mocha" },
+      })
+      vim.cmd.colorscheme("catppuccin")
+    end,
   },
 
   -- Completion: blink.cmp (replaces archived nvim-cmp + cmp-* sources).
