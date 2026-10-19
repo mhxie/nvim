@@ -28,7 +28,6 @@ Before you begin, make sure you have the following installed:
     *   This setup uses `conform.nvim` which relies on external formatter executables. The `setup.sh` script aims to install:
         *   `stylua` (for Lua)
         *   `ruff` (for Python formatting and linting)
-        *   `isort` (for Python import sorting, works with `ruff`)
         *   `clang-format` (for C/C++)
         *   `rustfmt` (for Rust)
     *   Ensure these are installable on your system (e.g., `cargo` for Rust-based tools, `pip` for Python tools).
@@ -61,7 +60,7 @@ Before you begin, make sure you have the following installed:
     This script supports Linux (Ubuntu/Debian, Amazon Linux) and macOS. It will attempt to install:
     *   **Rust tools**: `rust-analyzer`, `rustfmt`, `clippy`, `stylua` (via cargo)
     *   **C/C++ tools**: `clangd`, `clang-format`
-    *   **Python tools**: `ruff`, `isort` (into a venv: `~/.config/nvim/venvs/nvim-python-tools`)
+    *   **Python tools**: `ruff` (into a venv: `~/.config/nvim/venvs/nvim-python-tools`)
     *   **Go tools**: `gopls`, `goimports`
     *   **Node.js**: If not already installed.
 
@@ -91,8 +90,8 @@ Before you begin, make sure you have the following installed:
 This setup is modular, with configurations in `lua/options.lua`, `lua/keymaps.lua`, `lua/plugins.lua`, and `lua/lsp.lua`.
 
 *   **Plugin Manager**: `folke/lazy.nvim`
-*   **Completion**: `hrsh7th/nvim-cmp` (with sources for LSP, buffer, path)
-*   **Formatting**: `stevearc/conform.nvim` (handles `stylua`, `ruff format`, `isort`, `clang-format`, `rustfmt`)
+*   **Completion**: `saghen/blink.cmp` (with sources for LSP, path, snippets, buffer)
+*   **Formatting**: `stevearc/conform.nvim` (handles `stylua`, `ruff format`, `clang-format`, `rustfmt`)
 *   **LSP Management**: `mason-org/mason.nvim` and `mason-org/mason-lspconfig.nvim` (the project moved from the `williamboman` org).
 *   **Key LSPs Configured** (via `vim.lsp.config()` + auto-enable from mason-lspconfig):
     *   **Rust**: `rust-analyzer` (via `mrcjkb/rustaceanvim` — the maintained successor to the archived `rust-tools.nvim`; it owns the Rust client lifecycle, so `rust_analyzer` is excluded from mason-lspconfig auto-enable)

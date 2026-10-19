@@ -60,7 +60,7 @@ require("lazy").setup({
       },
       formatters_by_ft = {
         lua = { "stylua" },
-        python = { "ruff_format", "isort" }, -- ruff can format and sort imports
+        python = { "ruff_organize_imports", "ruff_format" }, -- ruff sorts imports, then formats
         c = { "clang_format" },
         cpp = { "clang_format" },
         rust = { "rustfmt" },
@@ -152,4 +152,8 @@ require("lazy").setup({
     ft = { "rust" },
   },
 
+}, {
+  -- No plugin here ships a rockspec; skip the hererocks/luarocks bootstrap
+  -- (and its :checkhealth error).
+  rocks = { enabled = false },
 })

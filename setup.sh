@@ -5,7 +5,7 @@
 set -o pipefail # Return value of a pipeline is the value of the last command to exit with a non-zero status
 
 # --- Configuration ---
-PYTHON_PACKAGES="ruff isort"
+PYTHON_PACKAGES="ruff"
 GO_BINARIES=("gopls" "goimports")
 GO_MODULES=("golang.org/x/tools/gopls@latest" "golang.org/x/tools/cmd/goimports@latest")
 RUST_COMPONENTS=("rust-analyzer" "rustfmt" "clippy")

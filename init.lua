@@ -13,11 +13,12 @@ for _, name in ipairs({
 end
 
 -- Disable unused language hosts ($EDITOR providers). We don't author
--- nvim plugins in perl / ruby / node, so suppress the host probes that
+-- nvim plugins in perl / ruby / node / python, so suppress the host probes that
 -- otherwise show up in :checkhealth.
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_node_provider = 0
+vim.g.loaded_python3_provider = 0
 
 require("options")
 require("keymaps")
